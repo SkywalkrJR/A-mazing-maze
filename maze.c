@@ -37,7 +37,7 @@ void printMaze(char maze[10][10],int sizeX,int sizeY)
 {
      int x,y,r,c;
      char move;
-    maze[0][2] = 'M';
+    // maze[0][2] = 'M';
 
           for(x=0;x<sizeX;x++)
     {
@@ -51,8 +51,8 @@ void printMaze(char maze[10][10],int sizeX,int sizeY)
         }
         puts("");
     }
-  r = 0;
-    c=2;
+//    r = 0;
+//    c=2;
     while (r < 10)
     {
 
@@ -120,34 +120,49 @@ void printMaze(char maze[10][10],int sizeX,int sizeY)
 //create maze walls
 void aMaze(char maze[10][10],int sizeX,int sizeY)
 {
-     int x,y,start,Prevpath;
+     int x,y,start,Prevpath,count;
     srand(time(NULL));
 
 
           for(x=0;x<sizeX;x++)
     {
         start = rand()%10;
+
         for(y=0;y<sizeY;y++)
         {
-            maze[x][y] = '*';
-           // if(y == start)
-          //  {
-                 //   maze[x][y]=' ';
-//                     if(x > 0)
-//            {
-//
-//            }
 
-           // }
+            if(y == start)
+            {
+                    maze[x][y]=' ';
+                     if(x > 0)
+            {
+
+
+              if(start <= Prevpath)
+              {
+                  y=Prevpath;
+                  for(count=start; count <=y; count++)
+                  {
+                      maze[x][count] = ' ';
+                  }
+              }
+
+            }
+
+            }
+            else{
+                maze[x][y] = '*';
+            }
 
 
             //creates paths, function names are the rows
-           zero3(maze,x,y);
-           four(maze,x,y);
-            five9(maze,x,y);
+//            zero3(maze,x,y);
+//            four(maze,x,y);
+//            five9(maze,x,y);
 
         }
         Prevpath = start;
+
 }
 }
 
