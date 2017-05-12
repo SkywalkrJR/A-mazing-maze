@@ -11,6 +11,7 @@
 
 /********************/
 //goes out of bounds, concept works tho!
+//add new function to add connecting paths to edd lines of stars
 void printMaze(char maze[10][10],int,int);
 void aMaze(char maze[10][10],int,int);
 //path creators
@@ -117,7 +118,7 @@ void printMaze(char maze[10][10],int sizeX,int sizeY)
     }
 
 }
-//create maze walls
+//create starting points
 void aMaze(char maze[10][10],int sizeX,int sizeY)
 {
      int x,y,start,Prevpath,count;
@@ -130,28 +131,39 @@ void aMaze(char maze[10][10],int sizeX,int sizeY)
 
         for(y=0;y<sizeY;y++)
         {
+            if(x == 0 || ((x%2)== 0))
 
-            if(y == start)
+            {
+                if(y == start)
             {
                     maze[x][y]=' ';
-                     if(x > 0)
-            {
-
-
-              if(start <= Prevpath)
-              {
-                  y=Prevpath;
-                  for(count=start; count <=y; count++)
-                  {
-                      maze[x][count] = ' ';
-                  }
-              }
-
-            }
+//                     if(x > 0)
+//            {
+//
+//
+//              if(start <= Prevpath)
+//              {
+//                  y=Prevpath;
+//                  for(count=start; count <=y; count++)
+//                  {
+//                      maze[x][count] = ' ';
+//                  }
+//              }
+//
+//            }
 
             }
             else{
                 maze[x][y] = '*';
+            }
+            }
+            else
+            {
+               maze[x][y] = '*';
+            }
+            if(x == 9 && y == Prevpath)
+            {
+                maze[x][y] = ' ';
             }
 
 
@@ -161,7 +173,12 @@ void aMaze(char maze[10][10],int sizeX,int sizeY)
 //            five9(maze,x,y);
 
         }
-        Prevpath = start;
+        if(x%2 == 0)
+        {
+           Prevpath = start;
+        }
+
+
 
 }
 }
